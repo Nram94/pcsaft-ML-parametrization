@@ -1,0 +1,13 @@
+{
+  "scenarios": {
+    "structural": {
+      "required_fields": ["molecular_weight"]
+    },
+    "macroscopic": {
+      "required_fields": ["molecular_weight", "tc_k", "pc_bar", "omega"]
+    },
+    "quantum": {
+      "required_fields": ["molecular_weight", "tc_k", "pc_bar", "omega", "Area_HA", "Area_HD", "Area_NA", "hhb_cosm_kj_kmol"]
+    }
+  }
+}
