@@ -1,0 +1,87 @@
+random_seeds:
+  global: 42
+  split: 314
+
+datasets:
+  non_associating: PC_SAFT_NA_ML_Dataset.json
+  self_associating: PC_SAFT_SA_ML_Dataset.json
+
+columns:
+  id: dippr_chemid
+  family: dippr_chemical_family
+  association_scheme: association_scheme
+
+features:
+  base:
+    - molcecular_weight
+    - tc_k
+    - pc_bar
+    - omega
+    - hhb_cosm_kj_kmol
+    - Area_HD
+    - Area_NA
+    - Area_HA
+    - Area_Total_COSMO
+  scenario_2a:
+    - molcecular_weight
+    - tc_k
+    - pc_bar
+    - omega
+  scenario_2b:
+    - molcecular_weight
+    - tc_k
+    - pc_bar
+    - omega
+    - hhb_cosm_kj_kmol
+    - Area_HD
+    - Area_NA
+    - Area_HA
+  scenario_2c:
+    - molcecular_weight
+    - tc_k
+    - pc_bar
+    - omega
+    - hhb_cosm_kj_kmol
+    - Area_HD
+    - Area_NA
+    - Area_HA
+    - Area_Total_COSMO
+    - dippr_chemical_family
+
+targets:
+  primary:
+    - m
+    - sigma
+    - epsilonk_k
+  transfer_sa:
+    - epsilonAB_k
+    - kappaAB
+
+splits:
+  test_size: 0.2
+  val_size: 0.2
+  stratify_by: dippr_chemical_family
+
+models:
+  random_forest:
+    n_estimators: 300
+    max_depth: null
+    min_samples_leaf: 1
+  xgboost:
+    n_estimators: 400
+    learning_rate: 0.05
+    max_depth: 6
+    subsample: 0.9
+    colsample_bytree: 0.9
+  mlp:
+    hidden_layer_sizes: [128, 64]
+    activation: relu
+    alpha: 0.0001
+    learning_rate_init: 0.001
+    max_iter: 1500
+
+outputs:
+  metrics_dir: reports/metrics
+  predictions_dir: reports/predictions
+  eda_dir: reports/eda
+  validation_dir: reports/validation
